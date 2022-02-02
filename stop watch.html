@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Stop watch</title>
+</head>
+<body>
+    <section>
+    <div class="main">
+        <div class="time">
+    <span class="hr">00 </span><p>Hr</p>
+     <span class="min">00 </span><p>Min</p>
+     <span class="sec">00 </span><p>Sec</p>
+     <span class="ms">00 </span><p>Ms</p>
+    </div>
+     <div class="button">
+     <button class="start" onclick="start()">Start</button>
+     <button class="pause" onclick="pause()">Pause</button>
+     <button class="reset" onclick="reset()">Reset</button>
+    </div>
+ </div>
+</section>
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+
+}
+html{
+    font-size: 100%;
+}
+body{
+    font-size: 10px;
+}
+p{
+    display: inline-block;
+    font-size: 3rem;
+}
+section{
+
+width: auto;
+height: 100vh;
+background-color: crimson;
+display: flex;
+align-items: center;
+justify-content: center;    
+}
+.time{
+font-size:6rem;
+padding: 2rem;
+ color: aliceblue;
+}
+.button{
+    
+    text-align: center;
+    }
+    button{
+        font-size:1rem ;
+        padding: .5rem 1rem;
+        margin: 0 1rem 0 0;
+        background-color: transparent;
+        color: white;
+        border-radius:10%;
+        box-shadow: 0px 1px 5px .2px black;
+       cursor: pointer;
+    }
+@media screen  and (max-width:908px){
+    html{
+         font-size: 87.5%;
+    }
+    .main{
+
+        margin-top: -10rem;
+    }
+}
+@media screen  and (max-width:796px){
+    html{
+         font-size:10px;
+    }
+}
+@media screen  and (max-width:605px){
+    .time{
+font-size: 4rem;
+    }
+    p{
+        font-size:2rem;
+    }
+}
+@media screen  and (max-width:388px){
+    .time{
+font-size: 3.5rem;
+    }
+    p{
+        font-size:1.5rem;
+    }
+    .main{
+        margin-top: -30rem;
+        
+    }
+     
+}
+@media screen  and (max-width:328px){
+    .time{
+font-size: 3rem;
+    }
+    p{
+        font-size:1.1rem;
+    }
+}
+</style>
+<script>
+let hr=document.querySelector(".hr");
+let min=document.querySelector(".min");
+let sec=document.querySelector(".sec");
+let ms=document.querySelector(".ms");
+let hour=0;
+let minute=0;
+let second=0;
+let microsec=0;
+let temp=1;
+let i=0;
+function start()
+{
+    temp=1;
+   if(i==0)
+   {
+       i=1;
+  setInterval(clock,10);
+   }
+    
+};
+function pause()
+{
+    temp=0;
+} 
+function reset()
+{ 
+   temp=0;
+   hour=0;
+  minute=0;
+  second=0;
+  microsec=0;
+  ms.innerHTML= "0"+microsec ;
+  sec.innerHTML="0"+ second ;
+  min.innerHTML="0"+minute;
+  hr.innerHTML="0"+hour ;
+}
+
+ 
+function clock()
+{
+    if(temp==1)
+    {
+    microsec+=1;
+    if(microsec<10)
+        ms.innerHTML= "0"+microsec ;
+       else if(microsec<100)
+        ms.innerHTML= microsec ;
+    if(microsec==100)
+     {   microsec=0;
+         second+=1;
+          if(second<10)
+          sec.innerHTML="0"+ second ;
+          else  
+          sec.innerHTML=second  ;
+    }
+    if( second==60)
+    {   second=0;
+        sec.innerHTML="0"+second  ;
+          minute+=1;
+          if(minute<10)
+         min.innerHTML="0"+minute ;
+          else  
+          min.innerHTML=minute ; 
+    }
+    if(minute==60)
+    {
+        minute=0;
+        min.innerHTML="0"+minute;
+         hour+=1;
+          if(hour<10)
+         hr.innerHTML="0"+hour ;
+          else 
+          hr.innerHTML=hour ; 
+ }
+    }
+};
+
+</script>
+</body>
+</html>
